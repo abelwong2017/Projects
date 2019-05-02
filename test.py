@@ -1,9 +1,3 @@
 print ( "Hello Whnkjorld")
 #Whats up!
-dfvdf
-
-testing branch
-xvxcv
-secondd
-cxv
-x
+print ("This is a second test")
