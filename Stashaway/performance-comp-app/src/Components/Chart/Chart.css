@@ -1,0 +1,10 @@
+div {
+    position: relative;
+
+}
+
+.chart {
+    position: absolute;
+    top:350px;
+    left:60px
+}

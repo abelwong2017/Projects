@@ -1,0 +1,84 @@
+.Header {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* background-color: rgba(26, 26, 73, 0.952); */
+    background-color: rgb(2,24,57);
+    height: 200px;
+    width: 100%;
+    position: relative;
+}
+
+
+p {
+    float: left;
+    margin-left: 60px;
+    position: absolute;
+    top: 35%;
+    left: 0;
+    font-size: 30px;
+    color: aliceblue;
+    font-weight: bolder;
+}
+
+.investingDetails {
+  position: absolute;
+  float:left;
+  top:9.5rem;
+  list-style-type: none;
+  margin-left: 60px;
+  margin-bottom: 0;
+  padding: 0;
+  overflow: hidden;
+  /* background-color: rgba(26, 26, 73, 0.952); */
+  background-color: rgb(2,24,57);
+  /* float:left; */
+  
+}
+
+.logoSegment {
+    float: left ;
+    position: absolute;
+    top:10px;
+}
+
+.logo {
+    margin-left: 60px;
+}
+
+
+ul {
+    list-style-type: none;
+    margin-right: 60px;
+    margin-top: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(2,24,57);
+    float:right
+    
+  }
+
+  li {
+    float: left;
+    border-style:none;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover {
+    background-color: #111;
+  }
+
+
+.activeHeader {
+    color: rgb(16, 190, 190);
+    border-bottom: 10px solid aquamarine;
+  }
+  
+ 

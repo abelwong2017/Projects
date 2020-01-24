@@ -1,0 +1,135 @@
+.Body {
+  position: relative;
+}
+
+.button .active{
+  border-bottom: 5px solid aquamarine;
+  background-color: aquamarine;
+  
+}
+
+.button {
+/* Green */
+  padding: 12px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(255, 255, 255);
+  color: rgb(5, 177, 177);
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+  float: left;
+}
+
+
+.active, .button:hover{
+  padding: 12px;
+  border-radius: 5px;
+  border-bottom: 5px solid aquamarine;
+  background-color: rgb(5, 177, 177);
+  color: white;
+}
+
+
+
+.bodyHeader {
+    color: black;
+    position: absolute;
+    top:0;
+}
+
+
+.timePeriod {
+  float:left;
+  margin-left: 60px;
+  position: absolute;
+  top: 300px;
+}
+
+.currency {
+  float:left;
+  position: absolute;
+  top: 300px;
+  right:50px;
+
+}
+
+.circle {
+    text-align: center;
+    font-size: 20px;
+    height: 50px;
+    width: 50px;
+    background-color: #555;
+    border-radius: 50%;
+    line-height: 50px;
+    color: #fff;
+    font-weight: bold;
+
+  }
+
+.container {
+    position: relative;
+
+  }
+  
+.comparisonFourteen {
+  border-radius: 10px;
+  position: absolute;
+  top: 8vh;
+  margin-left: 3vw;
+  width: 47vw;
+  height: 14vh;
+  background-color: rgb(228, 226, 226);
+
+}
+
+.title {
+  top:0;
+  color:black
+}
+.index {
+font-weight: bold;
+color: blue;
+font-size: x-large;
+}
+
+.benchmark {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: absolute;
+  top: 8vh;
+  right:0%;
+  margin-right: 3vw;
+  width: 47vw;
+  height: 14vh;
+  background-color: rgb(190, 188, 188); 
+      
+}
+.benchmarkDetails{
+  border-radius: 6px;
+  position: absolute;
+  height:50%;
+  width:40vw;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: whitesmoke;
+  padding-left: 2%;
+  font-size: larger;
+}
+
+
+.overlay{
+  position: absolute;
+  top:12vh;
+  left:48vw;
+  z-index: 10;
+  background-color: hsla(239, 96%, 52%, 0.953); /*dim the background*/
+}
+
