@@ -4,8 +4,48 @@ import * as d3 from 'd3';
 
 class BarChart extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            width: 0,
+            height: 400,
+        }
+        this.chartRef = React.createRef();
+        this.drawChart = this.drawChart.bind(this);
+    }
+
+    getWidth(){
+        console.log(this.chartRef.current.parentElement.offsetWidth, "width of element")
+        return this.chartRef.current.parentElement.offsetWidth;
+    }
+    getHeight(){
+        console.log(this.chartRef.current.parentElement.offsetHeight, "Height of element")
+        // return this.chartRef.current.parentElement.offsetHeight;
+        return 400;
+    }
+
     componentDidMount() {
-      this.drawChart();
+        let width = this.getWidth()
+        let height = this.getHeight();
+        this.setState({width: width, height: height}, ()=> {
+            this.drawChart();
+        });
+
+        let resizedFn;
+        window.addEventListener("resize", () => {
+            clearTimeout(resizedFn);
+            resizedFn = setTimeout(() => {
+                this.redrawChart();
+            }, 200)
+        });
+    }
+
+    redrawChart() {
+        let width = this.getWidth()
+        this.setState({width: width});
+        d3.select("svg").remove();
+        this.drawChart = this.drawChart.bind(this);
+        this.drawChart();
     }
 
     componentDidUpdate() {
@@ -13,10 +53,10 @@ class BarChart extends Component {
     }
 
     drawChart() {
-        const margin = {top:100, right: 20, bottom:60, left: 90};
-        const width = 1800 - margin.left - margin.right;
-        const height = 400 - margin.top - margin.bottom;
-        
+        const margin = {top:100, right: 60, bottom:60, left: 90};
+        const width = this.state.width - margin.left - margin.right;
+        const height = this.state.height - margin.top - margin.bottom;
+
         // Refresh graph upon draw
         d3.select("svg").remove();
 
@@ -25,7 +65,7 @@ class BarChart extends Component {
         //Create chart element
         const svg = d3.select(".chart")
         .append("svg")
-            .attr("width", width + margin.left + margin.right)
+            .attr("width", width + margin.left)
             .attr("height", height + margin.top + margin.bottom)
             .style("background-color", "#021839")
         .append("g")
@@ -34,7 +74,7 @@ class BarChart extends Component {
 
         const xscale = d3.scaleBand();
         xscale.domain(data.map(d => d.month))
-        xscale.range([0,width]);
+        xscale.range([0,width ]);
 
         const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
         
@@ -79,6 +119,7 @@ class BarChart extends Component {
         //plot benchmark comparison data
         svg.append("path")
             .datum(data)
+            .attr('class', 'line')
             .attr("fill", "none")
             .attr("stroke", "orange")
             .attr("stroke-width", 1.5)
@@ -90,6 +131,7 @@ class BarChart extends Component {
         //Plot stash away data    
         svg.append("path")
         .datum(data)
+        .attr('class', 'line')
         .attr("fill", "none")
         .attr("stroke", "red")
         .attr("stroke-width", 1.5)
@@ -108,23 +150,22 @@ class BarChart extends Component {
         }
         
         //Legend
-        svg.append("circle").attr("cx",500).attr("cy",285).attr("r", 6).style("fill", "red")
-        svg.append("circle").attr("cx",720).attr("cy",285).attr("r", 6).style("fill", "orange")
-        svg.append("text").attr("x", 520).attr("y", 285).text("Stashaway Risk Index 14%").style("font-size", "15px").attr("alignment-baseline","middle").style("fill", "white")
-        svg.append("text").attr("x", 740).attr("y", 285).text(portfolioText).style("font-size", "15px").attr("alignment-baseline","middle").style("fill", "white")
+        svg.append("circle").attr("cx",width/2 - 360).attr("cy",285).attr("r", 6).style("fill", "red")
+        svg.append("circle").attr("cx",width/2 - 130).attr("cy",285).attr("r", 6).style("fill", "orange")
+        svg.append("text").attr("x", width/2 - 340).attr("y", 285).text("Stashaway Risk Index 14%").style("font-size", "15px").attr("alignment-baseline","middle").style("fill", "white")
+        svg.append("text").attr("x", width/2 - 110).attr("y", 285).text(portfolioText).style("font-size", "15px").attr("alignment-baseline","middle").style("fill", "white")
 
         //Title
         svg.append("text").attr("x", -40).attr("y", -60).text("Portfolio value based on gross returns").style("font-size", "20px").attr("alignment-baseline","middle").style("fill", "white").style("font-weight", "bold")
         svg.append("text").attr("x", -40).attr("y", -30).text("Gross returns and exchange rates are hard coded").style("font-size", "15px").attr("alignment-baseline","middle").style("fill", "white")
 
+
     }
-
-
           
     render(){
       return (
-          <div>
-              <div className="chart" id={"#" + this.props.id}></div>
+          <div ref={this.chartRef} >
+              <div className="chart"/>
           </div>
       )
     }

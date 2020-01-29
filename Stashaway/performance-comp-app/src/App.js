@@ -255,7 +255,10 @@ export class App extends Component {
         <Header></Header>
         <br></br>
         <Body onChange={this.updatePortfolo} onTimeChange = {this.timeChange} onCurrencyChange = {this.currencyChange} active={this.state.activeCurrency} activeTime={this.state.defaultTimePeriod} ></Body>
-        <Chart data={this.state.data} displayPortfolio = {this.state.displayPortfolio}/>
+        <div >
+          <Chart data={this.state.data} displayPortfolio = {this.state.displayPortfolio}/>
+        </div>
+        
       </div>
     )
   }
